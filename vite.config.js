@@ -8,5 +8,8 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
-  base: './'
+  base: './',
+  build: {
+      outDir: 'build'  // 👈 加這個
+    }
 })

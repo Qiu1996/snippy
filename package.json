@@ -2,7 +2,7 @@
   "name": "snippy",
   "version": "1.0.0",
   "description": "本地桌面應用，幫助開發者管理自己的程式碼片段。  支援快速搜尋、標籤分類、語法高亮，提升開發效率。",
-  "main": "dist-electron/main.js",
+  "main": "build/dist-electron/main.js",
   "scripts": {
     "build": "concurrently \"vite build\" \"tsc -p electron/tsconfig.json\"",
     "el:start": "electron .",
@@ -12,14 +12,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^24.7.2",
     "@vitejs/plugin-vue": "^6.0.1",
     "concurrently": "^9.2.1",
     "electron": "^38.2.2",
+    "electron-rebuild": "^3.2.9",
     "typescript": "^5.9.3",
     "vite": "^7.1.9"
   },
   "dependencies": {
+    "better-sqlite3": "^12.4.1",
     "electron-log": "^5.4.3",
     "vue": "^3.5.22"
   }

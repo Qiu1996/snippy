@@ -2,8 +2,11 @@
 node_modules
 
 # 輸出
-dist
+build
 
 #系統文件
 .DS_Store
+.vscode
 
+# 本地資料庫
+snippets.db
