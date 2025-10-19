@@ -4,7 +4,7 @@ import {EditorState} from "@codemirror/state"
 import {EditorView, keymap} from "@codemirror/view"
 import { markdown } from '@codemirror/lang-markdown'
 
-const markdownEditor = ref(null);
+const markdownEditor = ref<HTMLDivElement | null>(null);
 
 onMounted(() => {
     let startState = EditorState.create({
