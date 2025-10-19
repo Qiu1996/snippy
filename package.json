@@ -4,7 +4,7 @@
   "description": "本地桌面應用，幫助開發者管理自己的程式碼片段。  支援快速搜尋、標籤分類、語法高亮，提升開發效率。",
   "main": "build/dist-electron/main.js",
   "scripts": {
-    "build": "concurrently \"vite build\" \"tsc -p electron/tsconfig.json\"",
+    "build": "vite build",
     "el:start": "electron .",
     "vite:start": "vite"
   },
@@ -21,7 +21,8 @@
     "electron-rebuild": "^3.2.9",
     "tailwindcss": "^4.1.14",
     "typescript": "^5.9.3",
-    "vite": "^7.1.9"
+    "vite": "^7.1.9",
+    "vite-plugin-electron": "^0.29.0"
   },
   "dependencies": {
     "@codemirror/commands": "^6.9.0",
