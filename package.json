@@ -12,17 +12,24 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^24.7.2",
     "@vitejs/plugin-vue": "^6.0.1",
     "concurrently": "^9.2.1",
     "electron": "^38.2.2",
     "electron-rebuild": "^3.2.9",
+    "tailwindcss": "^4.1.14",
     "typescript": "^5.9.3",
     "vite": "^7.1.9"
   },
   "dependencies": {
+    "@codemirror/commands": "^6.9.0",
+    "@codemirror/lang-markdown": "^6.4.0",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/view": "^6.38.6",
     "better-sqlite3": "^12.4.1",
+    "codemirror": "^6.0.2",
     "electron-log": "^5.4.3",
     "vue": "^3.5.22"
   }

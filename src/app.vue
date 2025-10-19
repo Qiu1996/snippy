@@ -1,11 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SideBar from './components/SideBar.vue'
+import EditArea from './components/EditArea.vue'
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div class="flex">
+    <SideBar />
+    <EditArea />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  
+</style>
