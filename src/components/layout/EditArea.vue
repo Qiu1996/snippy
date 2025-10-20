@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import CodeEditor from './CodeEditor.vue';
-import MarkdownEditor from './MarkdownEditor.vue';
-import EditButtons from './EditButtons.vue';
+import CodeEditor from '../editor/CodeEditor.vue';
+import MarkdownEditor from '../editor/MarkdownEditor.vue';
+import EditButtons from '../ui/EditButtons.vue';
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Tab from "./TabItem.vue"
+import Tab from "../ui/TabItem.vue"
 </script>
 
 <template>
