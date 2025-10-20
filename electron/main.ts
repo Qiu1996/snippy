@@ -1,29 +1,30 @@
-const { app, BrowserWindow } = require('electron');
+import { app, BrowserWindow } from 'electron';
 
-console.log('electron start success');
+const isDev = true;
+
+const WINDOW_CONFIG = {
+  width: 750,
+  height: 400,
+  x: 730,
+  y: 700,
+
+  webPreferences: {
+    devTools: true
+  }
+}
+
+const APP_URL = () => {
+  if(isDev){
+    return 'http://localhost:5173/';
+  }else{
+    throw new Error('生產環境路徑未設定');
+  }
+}
 
 function createWindow() {
-  const win = new BrowserWindow({
-    width: 1200,
-    height: 800,
-    webPreferences: {
-      devTools: true
-    }
-  });
-  
-  win.loadURL('http://localhost:5173/');
+  const win = new BrowserWindow(WINDOW_CONFIG);
+  win.loadURL(APP_URL());
 }
 
 app.whenReady().then(createWindow);
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
-
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
-  }
-});
+app.on('window-all-closed', () => app.quit());
