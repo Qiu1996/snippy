@@ -1,13 +1,12 @@
 <script setup lang="ts">
-  const openSnippetEdit = () => {
-    console.log('打開新增片段區域')
-  }
+  const emit = defineEmits(['add-tab']);
+  
 
 </script>
 
 <template>
   <div class="sideBar">
-    <button @click="openSnippetEdit">新增</button>
+    <button @click="emit('add-tab')">新增</button>
   </div>
 </template>
 
