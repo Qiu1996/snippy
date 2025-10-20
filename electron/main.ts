@@ -7,6 +7,9 @@ const WINDOW_CONFIG = {
   height: 400,
   x: 730,
   y: 700,
+  
+  // TODO: 注意這邊的TS寫法
+  titleBarStyle: 'hiddenInset' as const, 
 
   webPreferences: {
     devTools: true
