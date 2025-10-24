@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from 'electron';
+ import path from 'path';
 
 const isDev = true;
 
@@ -8,11 +9,11 @@ const WINDOW_CONFIG = {
   x: 730,
   y: 700,
   
-  // TODO: 注意這邊的TS寫法
   titleBarStyle: 'hiddenInset' as const, 
 
   webPreferences: {
-    devTools: true
+    devTools: true,
+    preload: path.join(__dirname, 'preload.js')
   }
 }
 
