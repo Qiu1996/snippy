@@ -1,19 +1,12 @@
 <script setup lang="ts">
-  const emit = defineEmits(['add-tab']);
-  
-
+import AddBtn from "../ui/AddBtn.vue";
 </script>
 
 <template>
-  <div class="sideBar">
-    <button @click="emit('add-tab')">新增</button>
+  <div>
+    <AddBtn class="border"/>
   </div>
 </template>
 
 <style scoped>
-  .sideBar{
-    border: 1px solid black;
-    width: 20vw;
-    height: 100vh;
-  }
 </style>

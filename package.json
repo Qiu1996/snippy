@@ -6,7 +6,7 @@
   "scripts": {
     "build": "vite build",
     "el:start": "electron .",
-    "vite:start": "vite"
+    "dev": "vite"
   },
   "keywords": [],
   "author": "",
@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "@codemirror/commands": "^6.9.0",
-    "@codemirror/lang-markdown": "^6.4.0",
     "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^6.38.6",
     "better-sqlite3": "^12.4.1",

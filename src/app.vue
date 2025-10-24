@@ -2,28 +2,18 @@
 import SideBar from './components/layout/SideBar.vue'
 import EditArea from './components/layout/EditArea.vue'
 import TopBar from './components/layout/TopBar.vue'
-import { ref } from 'vue';
+import {onMounted} from 'vue';
 
-interface Tab {
-  id: number;
-  title: string;
-}
-
-const tabs = ref<Tab[]>([]);
-
-function addTab(){
-  tabs.value.push({
-    id: Date.now(),
-    title: '未命名'
-  });
-}
+onMounted(() => {
+  console.log(window.myAPI)  // 應該顯示 { desktop: true }
+})
 </script>
 
 <template>
-  <TopBar :tabs="tabs" />
+  <TopBar />
   <div class="flex">
-    <SideBar @add-tab="addTab"/>
-    <EditArea />
+    <SideBar class="w-[20vw] h-[100vh] border" />
+    <EditArea class="w-[80vw] h-[100vh] border" />
   </div>
 </template>
 

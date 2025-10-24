@@ -20,14 +20,8 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="codeEditArea">
-        <div ref="codeEditor"></div>
-    </div>
+    <div ref="codeEditor"></div>
 </template>
 
 <style scoped>
-    .codeEditArea{
-        border: 1px solid black;
-        height: 50vh;
-    }
 </style>
