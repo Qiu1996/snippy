@@ -17,6 +17,8 @@
 - [x] 整合 Tailwind CSS v4
 - [x] 使用 vite 統一編譯 Electron 跟 Vue
 - [x] TypeScript 行別檢查配置
+- [x] Electron 前後端通訊管道 基礎建置完成
+- [x] 建立初始化 SQLite 資料庫功能
 
 ### 目前功能
 - [x] 建立基本介面（SideBar, EditArea）
@@ -27,7 +29,6 @@
 
 
 ### 未來規劃
-- [ ] 自動儲存
 - [ ] SideBar 顯示檔案清單
 - [ ] CodeEditor 語言選擇器
 - [ ] 語法高亮

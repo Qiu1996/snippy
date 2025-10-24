@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from 'electron';
- import path from 'path';
+import path from 'path';
+import { initDatabase } from './database';
 
 const isDev = true;
 
@@ -30,5 +31,8 @@ function createWindow() {
   win.loadURL(APP_URL());
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  initDatabase();
+  createWindow();
+});
 app.on('window-all-closed', () => app.quit());
