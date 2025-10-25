@@ -39,3 +39,23 @@ export function getDatabase() {
 export function getSnippetsDir() {
   return SNIPPETS_FILE_DIR;
 }
+
+export function createSnippet() {
+  const result = db.prepare('SELECT seq FROM sqlite_sequence WHERE name = ?').get('snippets') as { seq: number } | undefined;
+  const nextId = result ? result.seq + 1 : 1;
+
+  const title = `未命名_${nextId}`;
+  const fileName = `${title}.js`;
+  const filePath = path.join(SNIPPETS_FILE_DIR, fileName);
+
+  fs.writeFileSync(filePath, '');
+
+  const insert = db.prepare('INSERT INTO snippets (title, file_path) VALUES (?, ?)');
+  const info = insert.run(title, filePath);
+
+  return {
+    id: info.lastInsertRowid,
+    title,
+    file_path: filePath
+  };
+}

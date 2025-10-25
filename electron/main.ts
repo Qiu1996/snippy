@@ -1,6 +1,6 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
-import { initDatabase } from './database';
+import { initDatabase, createSnippet } from './database';
 
 const isDev = true;
 
@@ -34,5 +34,11 @@ function createWindow() {
 app.whenReady().then(() => {
   initDatabase();
   createWindow();
+
+  // IPC handlers
+  ipcMain.handle('create-snippet', () => {
+    return createSnippet();
+  });
 });
+
 app.on('window-all-closed', () => app.quit());

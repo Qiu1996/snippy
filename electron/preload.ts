@@ -1,5 +1,6 @@
-import { contextBridge } from "electron";
+import { contextBridge, ipcRenderer } from "electron";
 
-contextBridge.exposeInMainWorld('myAPI', {
-  desktop: true
+contextBridge.exposeInMainWorld('snippyAPI', {
+  desktop: true,
+  createSnippet: () => ipcRenderer.invoke('create-snippet')
 })
