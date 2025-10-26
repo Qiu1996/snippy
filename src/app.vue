@@ -3,26 +3,27 @@ import SideBar from './components/layout/SideBar.vue'
 import EditArea from './components/layout/EditArea.vue'
 import TopBar from './components/layout/TopBar.vue'
 import { ref } from 'vue';
+import type { SnippetTab } from './types/snippet';
 
-const snippets = ref([]);
-const currentSnippet = ref(null);
+const snippets = ref<SnippetTab[]>([]);
+const currentSnippet = ref<SnippetTab | null>(null);
 
-const loadSnippetList = async () => {
-  const result = await (window as any).snippyAPI.getSnippetsList();
+const loadSnippets = async () => {
+  const result = await window.snippyAPI.getSnippets();
   snippets.value = result;
 }
 
-loadSnippetList();
+loadSnippets();
 
-const loadSnippetById = async (id: number) => {
-  const result = await (window as any).snippyAPI.getSnippetById(id);
+const selectSnippet = async (id: number) => {
+  const result = await window.snippyAPI.getSnippetById(id);
   currentSnippet.value = result;
 }
 
 const addNewSnippet = async () => {
   try{
-    const newSnippet = await (window as any).snippyAPI.createSnippet();
-    await loadSnippetList();
+    const newSnippet = await window.snippyAPI.createSnippet();
+    await loadSnippets();
     currentSnippet.value = newSnippet;
   }catch(err){
     console.error('[app.vue] 新增錯誤:', err);
@@ -36,7 +37,7 @@ const addNewSnippet = async () => {
   <div class="flex">
     <SideBar
       :snippets="snippets" 
-      @load-snippet-by-id="loadSnippetById"
+      @select-snippet="selectSnippet"
       @add-new-snippet="addNewSnippet"
       class="w-[20vw] h-[100vh] border" />
     <EditArea 

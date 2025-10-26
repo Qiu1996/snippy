@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import CodeEditor from '../editor/CodeEditor.vue';
-const props = defineProps(['snippet'])
+import type { SnippetTab } from '../../types/snippet';
+
+const props = defineProps<{
+  snippet: SnippetTab | null
+}>()
 </script>
 
 <template>
-  <CodeEditor :modelValue="props.snippet?.content || ''" />
+  <CodeEditor :content="props.snippet?.content || ''" />
 </template>
 
 <style scoped>

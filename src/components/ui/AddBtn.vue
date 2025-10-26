@@ -1,7 +1,5 @@
 <script setup lang="ts">
 const emit = defineEmits(['addNewSnippet']);
-
-
 </script>
 
 <template>

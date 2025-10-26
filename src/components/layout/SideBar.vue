@@ -1,19 +1,12 @@
 <script setup lang="ts">
 import AddBtn from "../ui/AddBtn.vue";
 import { ref } from "vue";
+import type { SnippetTab } from "../../types/snippet"
 
-const emit = defineEmits(['loadSnippetById', 'addNewSnippet']);
-
-interface snippetTab{
-  id: number,
-  title: string,
-  file_path: string,
-  created_at: string,
-  updated_at: string
-}
+const emit = defineEmits(['selectSnippet', 'addNewSnippet']);
 
 const props = defineProps<{
-  snippets: snippetTab[]
+  snippets: SnippetTab[]
 }>();
 
 </script>
@@ -27,7 +20,7 @@ const props = defineProps<{
     <div>
       <p 
         v-for="sni in props.snippets"
-        @click="emit('loadSnippetById', sni.id)">
+        @click="emit('selectSnippet', sni.id)">
         {{ sni.title }}
       </p>
     </div>

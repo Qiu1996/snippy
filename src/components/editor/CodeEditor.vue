@@ -5,12 +5,14 @@ import {EditorView, keymap} from "@codemirror/view"
 import {defaultKeymap} from "@codemirror/commands"
 
 const codeEditor = ref<HTMLDivElement | null>(null);
-const props = defineProps(['modelValue']);
+const props = defineProps<{
+  content: string,
+}>();
 let view: EditorView;
 
 onMounted(() => {
     let startState = EditorState.create({
-      doc: props.modelValue || '',
+      doc: props.content || '',
       extensions: [keymap.of(defaultKeymap)]
     })
     
@@ -20,7 +22,7 @@ onMounted(() => {
     })
 })
 
-watch(() => props.modelValue, (newContent) => {
+watch(() => props.content, (newContent) => {
   if (view && newContent !== undefined) {
     view.dispatch({
       changes: { from: 0, to: view.state.doc.length, insert: newContent }

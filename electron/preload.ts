@@ -1,8 +1,7 @@
 import { contextBridge, ipcRenderer } from "electron";
 
 contextBridge.exposeInMainWorld('snippyAPI', {
-  desktop: true,
   createSnippet: () => ipcRenderer.invoke('create-snippet'),
-  getSnippetsList: () => ipcRenderer.invoke('get-snippets-list'),
+  getSnippets: () => ipcRenderer.invoke('get-snippets'),
   getSnippetById: (id: number) => ipcRenderer.invoke('get-snippet-by-id', id)
 })
