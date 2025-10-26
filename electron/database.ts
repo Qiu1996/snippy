@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import { app } from 'electron';
 
+
 // 檔案 跟 資料庫的路徑
 const SNIPPY_ROOT = path.join(app.getPath('desktop'), 'SNIPPT');
 const SNIPPETS_FILE_DIR = path.join(SNIPPY_ROOT, 'snippets');
@@ -57,5 +58,24 @@ export function createSnippet() {
     id: info.lastInsertRowid,
     title,
     file_path: filePath
+  };
+}
+
+
+export function getSnippetsList(){
+  const result = db.prepare('SELECT * FROM snippets').all();
+  return result;
+}
+
+export function getSnippetById(id: number){
+  const snippet = db.prepare('SELECT * FROM snippets WHERE id = ?').get(id);
+  if (!snippet) {
+    throw new Error(`Snippet with id ${id} not found`);
+  }
+  const content = fs.readFileSync(snippet.file_path, 'utf-8');
+
+  return {
+    ...snippet,
+    content
   };
 }

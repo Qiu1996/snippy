@@ -1,6 +1,6 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
-import { initDatabase, createSnippet } from './database';
+import { initDatabase, createSnippet, getSnippetsList, getSnippetById } from './database';
 
 const isDev = true;
 
@@ -35,9 +35,14 @@ app.whenReady().then(() => {
   initDatabase();
   createWindow();
 
-  // IPC handlers
   ipcMain.handle('create-snippet', () => {
     return createSnippet();
+  });
+  ipcMain.handle('get-snippets-list', () => {
+    return getSnippetsList();
+  });
+  ipcMain.handle('get-snippet-by-id', (event, id) => {
+    return getSnippetById(id);
   });
 });
 
