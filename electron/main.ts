@@ -1,6 +1,11 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
-import path from 'path';
-import { initDatabase, createSnippet, getSnippets, getSnippetById } from './database';
+import { app, BrowserWindow, ipcMain } from "electron";
+import path from "path";
+import {
+  initDatabase,
+  createSnippet,
+  getSnippets,
+  getSnippetById,
+} from "./database";
 
 const isDev = true;
 
@@ -9,22 +14,22 @@ const WINDOW_CONFIG = {
   height: 400,
   x: 730,
   y: 700,
-  
-  titleBarStyle: 'hiddenInset' as const, 
+
+  titleBarStyle: "hiddenInset" as const,
 
   webPreferences: {
     devTools: true,
-    preload: path.join(__dirname, 'preload.js')
-  }
-}
+    preload: path.join(__dirname, "preload.js"),
+  },
+};
 
 const APP_URL = () => {
-  if(isDev){
-    return 'http://localhost:5173/';
-  }else{
-    throw new Error('生產環境路徑未設定');
+  if (isDev) {
+    return "http://localhost:5173/";
+  } else {
+    throw new Error("生產環境路徑未設定");
   }
-}
+};
 
 function createWindow() {
   const win = new BrowserWindow(WINDOW_CONFIG);
@@ -35,15 +40,9 @@ app.whenReady().then(() => {
   initDatabase();
   createWindow();
 
-  ipcMain.handle('create-snippet', () => {
-    return createSnippet();
-  });
-  ipcMain.handle('get-snippets', () => {
-    return getSnippets();
-  });
-  ipcMain.handle('get-snippet-by-id', (event, id) => {
-    return getSnippetById(id);
-  });
+  ipcMain.handle("create-snippet", () => createSnippet());
+  ipcMain.handle("get-snippets", () => getSnippets());
+  ipcMain.handle("get-snippet-by-id", (event, id) => getSnippetById(id));
 });
 
-app.on('window-all-closed', () => app.quit());
+app.on("window-all-closed", () => app.quit());
