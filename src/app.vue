@@ -29,6 +29,10 @@ const addNewSnippet = async () => {
     console.error("[app.vue] 新增錯誤:", err);
   }
 };
+
+const saveSnippet = async (id: number, content: string) => {
+  await window.snippyAPI.updateSnippet(id, content);
+};
 </script>
 
 <template>
@@ -42,6 +46,7 @@ const addNewSnippet = async () => {
     />
     <EditArea
       :snippet="currentSnippet"
+      @save-snippet="saveSnippet"
       class="w-5/6 h-[calc(100vh-40px)] border"
     />
   </div>

@@ -2,11 +2,26 @@
 import CodeEditor from "../editor/CodeEditor.vue";
 import SaveBtn from "../ui/SaveBtn.vue";
 import DeleteBtn from "../ui/DeleteBtn.vue";
+import { ref } from "vue";
 import type { SnippetTab } from "../../types/snippet";
 
 const props = defineProps<{
   snippet: SnippetTab | null;
 }>();
+const emit = defineEmits<{
+  saveSnippet: [id: number, content: string];
+}>();
+
+const editorRef = ref<InstanceType<typeof CodeEditor> | null>(null);
+
+const saveSnippet = () => {
+  if (editorRef.value) {
+    const content = editorRef.value.getContent();
+    const id = props.snippet?.id;
+    if (!id) return;
+    emit("saveSnippet", id, content);
+  }
+};
 </script>
 
 <template>
@@ -15,10 +30,10 @@ const props = defineProps<{
       {{ props.snippet?.file_path || "" }}
     </p>
     <div class="border h-[calc(100%-60px)] w-[100%] overflow-auto">
-      <CodeEditor :content="props.snippet?.content || ''" />
+      <CodeEditor ref="editorRef" :content="props.snippet?.content || ''" />
     </div>
     <div class="border">
-      <SaveBtn />
+      <SaveBtn @click="saveSnippet" />
       <DeleteBtn />
     </div>
   </div>
