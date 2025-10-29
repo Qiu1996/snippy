@@ -99,3 +99,19 @@ export function updateSnippet(id: number, content: string): void {
 
   return;
 }
+
+export function deleteSnippet(id: number) {
+  const snippet = db
+    .prepare("SELECT file_path FROM snippets WHERE id = ?")
+    .get(id) as { file_path: string } | undefined;
+
+  if (!snippet) {
+    throw new Error(`Snippet with id ${id} not found`);
+  }
+
+  fs.rmSync(snippet.file_path);
+
+  db.prepare("DELETE FROM snippets WHERE id = ?").run(id);
+
+  return;
+}

@@ -33,6 +33,12 @@ const addNewSnippet = async () => {
 const saveSnippet = async (id: number, content: string) => {
   await window.snippyAPI.updateSnippet(id, content);
 };
+
+const deleteSnippet = async (id: number) => {
+  await window.snippyAPI.deleteSnippet(id);
+  await loadSnippets();
+  currentSnippet.value = null;
+};
 </script>
 
 <template>
@@ -47,6 +53,7 @@ const saveSnippet = async (id: number, content: string) => {
     <EditArea
       :snippet="currentSnippet"
       @save-snippet="saveSnippet"
+      @delete-snippet="deleteSnippet"
       class="w-5/6 h-[calc(100vh-40px)] border"
     />
   </div>

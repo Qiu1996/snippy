@@ -7,6 +7,7 @@ declare global {
       getSnippets: () => Promise<SnippetTab[]>;
       getSnippetById: (id: number) => Promise<SnippetTab & { content: string }>;
       updateSnippet: (id: number, content: string) => Promise<void>;
+      deleteSnippet: (id: number) => Promise<void>;
     };
   }
 }

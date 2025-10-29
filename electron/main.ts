@@ -6,6 +6,7 @@ import {
   getSnippets,
   getSnippetById,
   updateSnippet,
+  deleteSnippet,
 } from "./database";
 
 const isDev = true;
@@ -47,6 +48,7 @@ app.whenReady().then(() => {
   ipcMain.handle("update-snippet", (event, id, content) =>
     updateSnippet(id, content),
   );
+  ipcMain.handle("delete-snippet", (event, id) => deleteSnippet(id));
 });
 
 app.on("window-all-closed", () => app.quit());

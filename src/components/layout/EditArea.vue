@@ -10,6 +10,7 @@ const props = defineProps<{
 }>();
 const emit = defineEmits<{
   saveSnippet: [id: number, content: string];
+  deleteSnippet: [id: number];
 }>();
 
 const editorRef = ref<InstanceType<typeof CodeEditor> | null>(null);
@@ -21,6 +22,12 @@ const saveSnippet = () => {
     if (!id) return;
     emit("saveSnippet", id, content);
   }
+};
+
+const deleteSnippet = () => {
+  const id = props.snippet?.id;
+  if (!id) return;
+  emit("deleteSnippet", id);
 };
 </script>
 
@@ -34,7 +41,7 @@ const saveSnippet = () => {
     </div>
     <div class="border">
       <SaveBtn @click="saveSnippet" />
-      <DeleteBtn />
+      <DeleteBtn @click="deleteSnippet" />
     </div>
   </div>
 </template>

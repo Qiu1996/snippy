@@ -6,4 +6,5 @@ contextBridge.exposeInMainWorld("snippyAPI", {
   getSnippetById: (id: number) => ipcRenderer.invoke("get-snippet-by-id", id),
   updateSnippet: (id: number, content: string) =>
     ipcRenderer.invoke("update-snippet", id, content),
+  deleteSnippet: (id: number) => ipcRenderer.invoke("delete-snippet", id),
 });
