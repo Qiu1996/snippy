@@ -9,27 +9,42 @@ import {
   deleteSnippet,
 } from "./database";
 
-const isDev = true;
+const isDev = !app.isPackaged;
 
-const WINDOW_CONFIG = {
-  width: 750,
-  height: 400,
-  x: 730,
-  y: 700,
-
+const BASE_WINDOW_CONFIG = {
   titleBarStyle: "hiddenInset" as const,
-
   webPreferences: {
-    devTools: true,
     preload: path.join(__dirname, "preload.js"),
   },
 };
+
+const WINDOW_CONFIG = isDev
+  ? {
+      ...BASE_WINDOW_CONFIG,
+      width: 750,
+      height: 400,
+      x: 730,
+      y: 700,
+      webPreferences: {
+        ...BASE_WINDOW_CONFIG.webPreferences,
+        devTools: true,
+      },
+    }
+  : {
+      ...BASE_WINDOW_CONFIG,
+      width: 750,
+      height: 400,
+      webPreferences: {
+        ...BASE_WINDOW_CONFIG.webPreferences,
+        devTools: false,
+      },
+    };
 
 const APP_URL = () => {
   if (isDev) {
     return "http://localhost:5173/";
   } else {
-    throw new Error("生產環境路徑未設定");
+    return `file://${path.join(__dirname, "../index.html")}`;
   }
 };
 
